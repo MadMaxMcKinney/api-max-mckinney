@@ -1,12 +1,14 @@
-import {Low, JSONFileSync} from 'lowdb'
+const StormDB = require("stormdb");
 
-// Cluster DB Setup
-const adapter = new JSONFileSync('cluster-db.json')
-const clusterDB = new Low(adapter)
+// start db with "./db.stormdb" storage location
+const engine = new StormDB.localFileEngine("./maxdb.json");
+const db = new StormDB(engine);
 
-// Initialize if empty
-clusterDB.read()
-clusterDB.data ||= { clusters: [] }
-clusterDB.write()
+// Init defaults
+db.default({
+    clusters: []
+})
 
-export {clusterDB}
+db.save()
+
+export default db
