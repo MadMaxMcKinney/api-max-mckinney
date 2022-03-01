@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import db from '../../db/db'
+//import db from '../../db/db'
+import testdb from '../../db/testdb.json'
 
 export default async function handler(req, res) {
 
@@ -24,5 +25,5 @@ export default async function handler(req, res) {
 
     // }
 
-    res.status(200).json({status: "200"})
+    res.status(200).json(testdb)
 }

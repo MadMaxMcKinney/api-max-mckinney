@@ -1,5 +1,4 @@
 import StormDB from "stormdb";
-try {
 
 // start db with "./db.stormdb" storage location
 const engine = new StormDB.localFileEngine("./maxdb.json");
@@ -11,8 +10,5 @@ db.default({
 })
 
 db.save()
-}
-catch (e) {
-    console.log(e)
-}
+
 export default db
