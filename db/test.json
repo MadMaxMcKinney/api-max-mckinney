@@ -1,0 +1,7 @@
+{
+    "clusters": {
+        "custer-1": {
+            "severity": "intense"
+        }
+    }
+}
