@@ -5,10 +5,10 @@ const engine = new StormDB.localFileEngine("./maxdb.json");
 const db = new StormDB(engine);
 
 // Init defaults
-db.default({
-    clusters: []
-})
+// db.default({
+//     clusters: []
+// })
 
-db.save()
+// db.save()
 
 export default db
