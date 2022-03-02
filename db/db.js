@@ -1,7 +1,7 @@
 import {Low, JSONFileSync} from 'lowdb'
 
 // Cluster DB Setup
-const adapter = new JSONFileSync('cluster-db.json')
+const adapter = new JSONFileSync('./cluster-db.json')
 const clusterDB = new Low(adapter)
 
 // Initialize if empty
