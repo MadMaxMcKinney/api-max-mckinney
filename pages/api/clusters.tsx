@@ -6,18 +6,16 @@ const prisma = new PrismaClient()
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
     switch(req.method) {
-
+ 
         case "POST":
             let cluster:Cluster = await prisma.cluster.create({
                 data: {
-                    severity: req.query.severity,
-                    comments: req.query.comments,
-                    date: req.query.date
+                    severity: req.query.severity.toString(),
+                    comments: req.query.comments.toString(),
+                    date: req.query.date.toString()
                 }
             })
-            
-            res.status(200).json(JSON.stringify(cluster))
-
+            res.status(200).json(cluster)
             break;
 
         case 'GET':
