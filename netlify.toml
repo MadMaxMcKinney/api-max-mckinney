@@ -1,3 +1,0 @@
-# Next.JS API routes are serverless functions which by default would not include any raw files that are not directly imported by the js function. This will make sure to include our database files in the serverless functions
-[functions]
-  included_files = ["prisma/**"]
