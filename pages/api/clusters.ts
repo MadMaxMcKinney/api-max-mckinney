@@ -2,18 +2,30 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { cluster } from '../../lib/dataModels';
 import {collection, getDocs, doc, addDoc, Timestamp} from 'firebase/firestore'
 import {db} from '../../lib/firebase'
+import {DateTime} from 'luxon'
 
 export default async function Handler(req:NextApiRequest, res:NextApiResponse) {
 
     switch(req.method) {
-
+        
+        // Expected params
+        // Severity: string
+        // Description: string
+        // OccurredAt: string (ISO Date String with timezone offset)
         case "POST":
+            
+            console.log(" POST Query:")
+            console.log(req.query)
+
+            // Making a date object to convert the incoming ISO date (and the timezone offset value) to a UTC based date
+            let formattedDate = DateTime.fromISO(req.query.occurredAt.toString(), {zone: "utc"})
+
             try {
                 // New cluster to add
                 const newCluster:cluster = {
                     severity: req.query.severity.toString(),
                     description: req.query.description.toString(),
-                    occurredAt: Timestamp.fromDate(new Date(req.query.occurredAt.toString()))
+                    occurredAt: Timestamp.fromDate(formattedDate.toJSDate())
                 }
                 
                 // Add new doc
